@@ -1,0 +1,41 @@
+{
+    "name": "pipdev/lazerpay",
+    "description": "laravel sdk for lazerpay",
+    "license": "MIT",
+    "keywords": [
+        "php",
+        "github",
+        "laravel",
+        "Open Source",
+        "crypto",
+        "defi",
+        "lazerpay",
+        "lazerpay.finance",
+        "laravel 6",
+        "laravel 7",
+        "laravel 8"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Pipedev\\Lazerpay\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Muritala David",
+            "email": "davmuri1414@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Pipedev\\Lazerpay\\LazerPayServiceProvider"
+            ],
+            "aliases": {
+                "Lazerpay": "Pipedev\\Lazerpay\\Facades\\LazerpayFacade"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
