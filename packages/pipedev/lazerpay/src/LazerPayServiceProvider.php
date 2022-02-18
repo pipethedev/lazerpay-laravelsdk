@@ -6,6 +6,14 @@ use Illuminate\Support\ServiceProvider;
 
 class LazerPayServiceProvider extends ServiceProvider
 {
+    public $path;
+
+    public function __construct($app)
+    {
+        $this->path = dirname(__DIR__) . '/config/lazerpay.php';
+        parent::__construct($app);
+    }
+
     /*
     * Indicates if loading of the provider is deferred.
     *
@@ -19,9 +27,11 @@ class LazerPayServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom($this->path, 'lazerpay');
+
         $this->app->bind('lazerpay', function () {
 
-            return new Lazerpay();
+            return new Lazerpay;
         });
     }
 
@@ -32,11 +42,21 @@ class LazerPayServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $config = realpath(__DIR__.'/../config/config.php');
+        $this->bootPublishing();
+    }
 
-        $this->publishes([
-            $config => config_path('lazerpay.php')
-        ]);
+
+    protected function bootPublishing()
+    {
+        if ($this->app->runningInConsole()) {
+
+            $this->publishes(
+                [
+                    $this->path => config_path('lazerpay.php'),
+                ],
+                'lazerpay'
+            );
+        }
     }
 
     /**

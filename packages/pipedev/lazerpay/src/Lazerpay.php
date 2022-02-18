@@ -6,7 +6,7 @@ class Lazerpay
 {
     public function dump()
     {
-        dd('dumping shopping cart');
+        dd('Lazer pay yayy!!');
     }
 
     public function initializePayment()

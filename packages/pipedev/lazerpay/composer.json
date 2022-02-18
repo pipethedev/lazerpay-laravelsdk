@@ -13,7 +13,8 @@
         "lazerpay.finance",
         "laravel 6",
         "laravel 7",
-        "laravel 8"
+        "laravel 8",
+        "laravel 9"
     ],
     "autoload": {
         "psr-4": {
