@@ -1,0 +1,68 @@
+{
+    "name": "pipedev/lazerpay",
+    "description": "laravel sdk for lazerpay",
+    "license": "MIT",
+    "keywords": [
+        "php",
+        "github",
+        "laravel",
+        "Open Source",
+        "crypto",
+        "defi",
+        "lazerpay",
+        "lazerpay.finance",
+        "laravel 6",
+        "laravel 7",
+        "laravel 8"
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "../../../app/",
+            "Pipedev\\Lazerpay\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Muritala David",
+            "email": "davmuri1414@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Pipedev\\Lazerpay\\LazerPayServiceProvider"
+            ],
+            "aliases": {
+                "Lazerpay": "Pipedev\\Lazerpay\\Facades\\LazerpayFacade"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "scripts" : {
+        "test" : "./vendor/bin/pest"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "9.5.x-dev",
+        "pestphp/pest": "1.x-dev",
+        "pestphp/pest-plugin-laravel": "1.x-dev"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "require": {
+        "php": "^7.4",
+        "facade/ignition": "dev-main",
+        "fruitcake/laravel-cors": "2.1.x-dev",
+        "laravel/sanctum": "3.x-dev",
+        "laravel/sail": "2.x-dev",
+        "laravel/tinker": "3.x-dev",
+        "guzzlehttp/guzzle": "7.4.x-dev"
+    }
+}
