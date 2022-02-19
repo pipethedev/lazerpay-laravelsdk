@@ -5,7 +5,7 @@
 ## Lazerpay Laravel Package
 pipedev/lazerpay is a laravel sdk package that access to laravel api
 
-[![Total Downloads](https://img.shields.io/packagist/dt/zeevx/lara-termii.svg?style=flat-square)](https://packagist.org/packages/zeevx/lara-termii)
+[![Total Downloads](https://img.shields.io/packagist/dt/zeevx/lara-termii.svg?style=flat-square)](https://packagist.org/packages/pipedev/lazerpay)
 
 ## Installation
 
