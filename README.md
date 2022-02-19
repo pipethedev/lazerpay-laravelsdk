@@ -146,7 +146,6 @@ $lazerpay = new Lazerpay();
 ## Todo
 
 * Webhooks
-* Comprehensive tests
 
 ## Contributing
 
