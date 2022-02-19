@@ -34,13 +34,13 @@ test('it should confirm a payment', function () {
 });
 
 
-test('it should transfer funds [payout]', function () {
-    $lazerpay = new Lazerpay();
-    $result = $lazerpay->transferFunds([
-        "amount" =>  1,
-        "recipient" => "0x0B4d358D349809037003F96A3593ff9015E89efA",
-        "coin" => 'BUSD',
-        "blockchain" => 'Binance Smart Chain',
-    ]);
-    expect($result->status)->toBe('success');
-});
+//test('it should transfer funds [payout]', function () {
+//    $lazerpay = new Lazerpay();
+//    $result = $lazerpay->transferFunds([
+//        "amount" =>  1,
+//        "recipient" => "0x0B4d358D349809037003F96A3593ff9015E89efA",
+//        "coin" => 'BUSD',
+//        "blockchain" => 'Binance Smart Chain',
+//    ]);
+//    expect($result->status)->toBe('success');
+//});
