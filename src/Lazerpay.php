@@ -52,7 +52,7 @@ class Lazerpay extends Helper
     public function transferFunds(array $data)
     {
         echo $this->url."/".self::TRANSFER_FUNDS;
-        $result = (new helpers\LazerpayAPI)->worker()->post($this->url."/".self::TRANSFER_FUNDS, $data)->throw();
+        $result = (new helpers\LazerpayAPI)->worker(true)->post($this->url."/".self::TRANSFER_FUNDS, $data)->throw();
 
         return json_decode($result);
     }
