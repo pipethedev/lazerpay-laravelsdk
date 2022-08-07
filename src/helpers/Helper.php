@@ -33,7 +33,7 @@ class Helper {
         return substr($uid, 0, $len);
     }
 
-    public function urlWrapper(string $type, string $path = ''): string {
+    public function  urlWrapper(string $type, string $path = ''): string {
         $label = "";
         switch ($type) {
             case Action::INIT_TRANSACTION:
