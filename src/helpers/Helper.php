@@ -55,6 +55,6 @@ class Helper {
         if($path !== ''){
             return $this->url.$label."/".$path;
         }
-        return $this->url."/".$label;
+        return $this->url.$label;
     }
 }

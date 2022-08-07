@@ -10,15 +10,9 @@ class LazerpayAPI
 {
     public static function url(bool $isPayOut = false): \Illuminate\Http\Client\PendingRequest
     {
-        $payOut = [];
-        if($isPayOut){
-            $secKey = Config::get('lazerpay.lazer_secret_key');
-            $payOut = [
-                'Authorization' => "Bearer $secKey"
-            ];
-        }
-        return Http::retry(3, 100)->withHeaders(array_merge([
+        $secKey = Config::get('lazerpay.lazer_secret_key');
+        return Http::retry(3, 100)->withToken($secKey)->withHeaders([
             'x-api-key' => Config::get('lazerpay.lazer_public_key')
-        ], $payOut));
+        ]);
     }
 }
