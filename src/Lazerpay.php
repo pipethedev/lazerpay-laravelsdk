@@ -3,56 +3,102 @@
 namespace Pipedev\Lazerpay;
 
 use Illuminate\Http\Client\RequestException;
+use Illuminate\Http\JsonResponse;
 use Pipedev\Lazerpay\helpers\Helper;
 use PipeDev\Lazerpay\helpers\LazerpayAPI;
-
 
 class Lazerpay extends Helper
 {
 
-    public $url;
-
-    const INIT_TRANSACTION = "transaction/initialize";
-    const CONFIRM_TRANSACTION = "transaction/verify";
-    const GET_ACCEPTED_COINS = "coins";
-    const TRANSFER_FUNDS = "transfer";
-
-    public function __construct()
+    /**
+     * @throws RequestException
+     */
+    public function initializePayment(array $data): mixed
     {
-        $this->url = 'https://api.lazerpay.engineering/api/v1';
+
+        $result = (new helpers\LazerpayAPI)->url()->post($this->urlWrapper(Action::INIT_TRANSACTION), array_merge($data, [
+            'reference' => $this->generateReference(12)
+        ]))->throw();
+
+
+        return json_decode($result);
+    }
+
+    public function confirmPayment(string $identifier): mixed
+    {
+
+        $result = (new helpers\LazerpayAPI)->url()->get($this->urlWrapper(Action::CONFIRM_TRANSACTION,$identifier))->throw();
+
+        return json_decode($result);
     }
 
 
     /**
      * @throws RequestException
      */
-    public function initializePayment(array $data)
+    public function generatePaymentLink(array $data): mixed
     {
-        $result = (new helpers\LazerpayAPI)->worker()->post($this->url."/".self::INIT_TRANSACTION, array_merge($data, [
-            'reference' => $this->generateReference(12)
-        ]))->throw();
+        $result = (new helpers\LazerpayAPI)->url()->post($this->urlWrapper(Action::PAYMENT_LINK), $data)->throw();
 
         return json_decode($result);
     }
 
-    public function confirmPayment(string $identifier)
+    /**
+     * @throws RequestException
+     */
+    public function getSinglePaymentLink(string $identifier): mixed
     {
-        $result =  (new helpers\LazerpayAPI)->worker()->get($this->url."/".self::CONFIRM_TRANSACTION."/".$identifier)->throw();
+        $result = (new helpers\LazerpayAPI)->url()->get($this->urlWrapper(Action::PAYMENT_LINK, $identifier))->throw();
 
         return json_decode($result);
     }
 
-    public function getAcceptedCoins()
+    /**
+     * @throws RequestException
+     */
+    public function updatePaymentLink(array $data, string $identifier): mixed
     {
-        $result = (new helpers\LazerpayAPI)->worker()->get($this->url."/".self::GET_ACCEPTED_COINS, [])->throw();
+        $result = (new helpers\LazerpayAPI)->url()->put($this->urlWrapper(Action::PAYMENT_LINK, $identifier), $data)->throw();
 
         return json_decode($result);
     }
 
-    public function transferFunds(array $data)
+    /**
+     * @throws RequestException
+     */
+    public function allPaymentLinks(): mixed
     {
-        echo $this->url."/".self::TRANSFER_FUNDS;
-        $result = (new helpers\LazerpayAPI)->worker(true)->post($this->url."/".self::TRANSFER_FUNDS, $data)->throw();
+        $result = (new helpers\LazerpayAPI)->url()->get($this->urlWrapper(Action::PAYMENT_LINK))->throw();
+
+        return json_decode($result);
+    }
+
+    /**
+     * @throws RequestException
+     */
+    public function transferFunds(array $data): mixed
+    {
+        $result =  (new helpers\LazerpayAPI)->url(true)->post($this->urlWrapper(Action::TRANSFER_FUNDS), $data)->throw();
+
+        return json_decode($result);
+    }
+
+    /**
+     * @throws RequestException
+     */
+    public function getAcceptedCoins(): mixed
+    {
+        $result = (new helpers\LazerpayAPI)->url()->get($this->urlWrapper(Action::GET_ACCEPTED_COINS))->throw();
+
+        return json_decode($result);
+    }
+
+    /**
+     * @throws RequestException
+     */
+    public function swapCrypto(array $data): mixed
+    {
+        $result = (new helpers\LazerpayAPI)->url()->post($this->urlWrapper(Action::GET_CRYPTO_AMOUNT), $data)->throw();
 
         return json_decode($result);
     }

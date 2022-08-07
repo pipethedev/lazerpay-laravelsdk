@@ -2,14 +2,20 @@
 
 namespace Pipedev\Lazerpay\helpers;
 
-use Illuminate\Http\Response;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Config;
-use Symfony\Component\HttpFoundation\Response as ResponseAlias;
+use Pipedev\Lazerpay\Action;
 
 class Helper {
 
-    public function generateReference(int $len): string
+    public $url;
+
+    public function __construct()
+    {
+        $this->url = 'https://api.lazerpay.engineering/api/v1';
+    }
+
+
+    protected function generateReference(int $len): string
     {
 
         $hex = md5(Config::get('lazerpay.lazer_secret_key'). uniqid("", true));
@@ -27,21 +33,34 @@ class Helper {
         return substr($uid, 0, $len);
     }
 
-
-    protected static function dataResponse($message, $data = null, $status = "success", $statusCode = null): JsonResponse
-    {
-        if (!$statusCode) {
-            if ($status == "error") {
-                $statusCode = ResponseAlias::HTTP_BAD_REQUEST;
-            } else {
-                $statusCode = ResponseAlias::HTTP_OK;
-            }
+    protected function  urlWrapper(string $type, string $path = ''): string {
+        $label = "";
+        switch ($type) {
+            case Action::INIT_TRANSACTION:
+                $label = "/transaction/initialize";
+            break;
+            case Action::CONFIRM_TRANSACTION:
+                $label = "/transaction/verify";
+            break;
+            case Action::GET_ACCEPTED_COINS:
+                $label = "/coins";
+            break;
+            case Action::TRANSFER_FUNDS:
+                $label = "/transfer";
+            break;
+            case Action::PAYMENT_LINK:
+                $label = "/payment-links";
+            break;
+            case Action::SWAP_CRYPTO:
+                $label = "/swap/crypto";
+            break;
+            case Action::GET_CRYPTO_AMOUNT:
+                $label = "/swap/crypto/amount-out";
+            break;
+        };
+        if($path !== ''){
+            return $this->url.$label."/".$path;
         }
-
-        return new JsonResponse([
-            'status' => $status,
-            'message' => $message,
-            'data' => $data,
-        ], $statusCode);
+        return $this->url.$label;
     }
 }
