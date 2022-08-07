@@ -15,7 +15,7 @@ class Helper {
     }
 
 
-    public function generateReference(int $len): string
+    protected function generateReference(int $len): string
     {
 
         $hex = md5(Config::get('lazerpay.lazer_secret_key'). uniqid("", true));
@@ -33,7 +33,7 @@ class Helper {
         return substr($uid, 0, $len);
     }
 
-    public function  urlWrapper(string $type, string $path = ''): string {
+    protected function  urlWrapper(string $type, string $path = ''): string {
         $label = "";
         switch ($type) {
             case Action::INIT_TRANSACTION:
@@ -50,6 +50,12 @@ class Helper {
             break;
             case Action::PAYMENT_LINK:
                 $label = "/payment-links";
+            break;
+            case Action::SWAP_CRYPTO:
+                $label = "/swap/crypto";
+            break;
+            case Action::GET_CRYPTO_AMOUNT:
+                $label = "/swap/crypto/amount-out";
             break;
         };
         if($path !== ''){

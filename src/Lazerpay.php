@@ -92,4 +92,14 @@ class Lazerpay extends Helper
 
         return json_decode($result);
     }
+
+    /**
+     * @throws RequestException
+     */
+    public function swapCrypto(array $data): mixed
+    {
+        $result = (new helpers\LazerpayAPI)->url()->post($this->urlWrapper(Action::GET_CRYPTO_AMOUNT), $data)->throw();
+
+        return json_decode($result);
+    }
 }

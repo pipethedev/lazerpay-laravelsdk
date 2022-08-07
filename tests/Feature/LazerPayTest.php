@@ -68,6 +68,17 @@ use Pipedev\Lazerpay\Lazerpay;
         expect($result->status)->toBe('success');
     });
 
+    test('Get crypto out amount', function() {
+        $lazerpay = new Lazerpay();
+        $result = $lazerpay->swapCrypto([
+            "amount" => 100,
+            "fromCoin" => 'BUSD',
+            "toCoin" => 'USDT',
+            "blockchain" => 'Binance Smart Chain'
+        ]);
+        expect($result->status)->toBe('success');
+    });
+
 
 //test('it should transfer funds [payout]', function () {
 //    $lazerpay = new Lazerpay();

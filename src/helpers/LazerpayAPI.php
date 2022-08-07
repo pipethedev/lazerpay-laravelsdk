@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 
 class LazerpayAPI
 {
-    public static function url(bool $isPayOut = false): \Illuminate\Http\Client\PendingRequest
+    public static function url(): \Illuminate\Http\Client\PendingRequest
     {
         $secKey = Config::get('lazerpay.lazer_secret_key');
         return Http::retry(3, 100)->withToken($secKey)->withHeaders([
