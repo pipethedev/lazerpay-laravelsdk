@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 
 class LazerpayAPI
 {
-    public function worker(bool $isPayOut = false): \Illuminate\Http\Client\PendingRequest
+    public static function url(bool $isPayOut = false): \Illuminate\Http\Client\PendingRequest
     {
         $payOut = [];
         if($isPayOut){

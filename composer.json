@@ -39,7 +39,7 @@
         }
     },
     "require": {
-        "php": "^7.4",
+        "php": "^7.3|^8.0",
         "facade/ignition": "2.17.3",
         "laravel/sanctum": "2.14.0",
         "laravel/sail": "1.13.3",
