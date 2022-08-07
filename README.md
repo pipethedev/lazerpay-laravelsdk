@@ -141,6 +141,41 @@ $lazerpay = new Lazerpay();
         "coin" => 'BUSD',
         "blockchain" => 'Binance Smart Chain',
     ]);
+
+/**
+ * Generate payment links
+ */
+    $lazerpay->generatePaymentLink([
+      "title" => 'Njoku Test',
+      "description" => 'Testing this sdk',
+      "logo" => 'https://webhook.site/d1e815d0-0aa4-4bee-aeb5-a5eb0f62701a',
+      "currency" => 'USD',
+      "type" => 'standard',
+      "amount" => 100
+    ]);
+    
+/**
+ * This describes to allow you get all Payment links created
+ */
+    $lazerpay->allPaymentLinks();
+    
+/**
+ * This describes disabling or enabling a payment link by updating it "active" or "inactive"
+ */
+    $lazerpay->updatePaymentLink([
+        "status" => "active"
+    ], "jgidgd");
+
+/**
+ * This describes to allow you swap between two stable coins
+ */
+     $lazerpay->swapCrypto([
+        "amount" => 100,
+        "fromCoin" => 'BUSD',
+        "toCoin" => 'USDT',
+        "blockchain" => 'Binance Smart Chain',
+        "metadata" => array("id" => "343243243223432"),
+    ]);
 ```
 
 ## Todo
