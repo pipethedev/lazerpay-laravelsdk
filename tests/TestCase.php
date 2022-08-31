@@ -2,9 +2,15 @@
 
 namespace Tests;
 
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Pipedev\Lazerpay\LazerPayServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
-abstract class TestCase extends BaseTestCase
+class TestCase extends Orchestra
 {
-    use CreatesApplication;
+    protected $loadEnvironmentVariables = true;
+    
+    protected function getPackageProviders($app)
+    {
+        return [LazerPayServiceProvider::class];
+    }
 }

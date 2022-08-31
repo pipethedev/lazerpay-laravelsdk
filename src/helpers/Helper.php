@@ -7,24 +7,19 @@ use Pipedev\Lazerpay\Action;
 
 class Helper {
 
-    public $url;
+    protected $url;
 
     public function __construct()
     {
         $this->url = 'https://api.lazerpay.engineering/api/v1';
     }
 
-
     protected function generateReference(int $len): string
     {
-
         $hex = md5(Config::get('lazerpay.lazer_secret_key'). uniqid("", true));
-
         $pack = pack('H*', $hex);
         $tmp =  base64_encode($pack);
-
         $uid = preg_replace("#(*UTF8)[^A-Za-z0-9]#", "", $tmp);
-
         $len = max(4, min(128, $len));
 
         while (strlen($uid) < $len)
@@ -33,8 +28,10 @@ class Helper {
         return substr($uid, 0, $len);
     }
 
-    protected function  urlWrapper(string $type, string $path = ''): string {
+    protected function  urlWrapper(string $type, string $path = ''): string
+    {
         $label = "";
+
         switch ($type) {
             case Action::INIT_TRANSACTION:
                 $label = "/transaction/initialize";
@@ -58,9 +55,11 @@ class Helper {
                 $label = "/swap/crypto/amount-out";
             break;
         };
-        if($path !== ''){
+
+        if ($path !== '') {
             return $this->url.$label."/".$path;
         }
+
         return $this->url.$label;
     }
 }

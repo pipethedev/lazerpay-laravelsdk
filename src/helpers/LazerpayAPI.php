@@ -2,17 +2,18 @@
 
 namespace Pipedev\Lazerpay\helpers;
 
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
-
+use Illuminate\Support\Facades\Config;
 
 class LazerpayAPI
 {
-    public static function url(): \Illuminate\Http\Client\PendingRequest
+    public static function url()
     {
-        $secKey = Config::get('lazerpay.lazer_secret_key');
-        return Http::retry(3, 100)->withToken($secKey)->withHeaders([
-            'x-api-key' => Config::get('lazerpay.lazer_public_key')
+        $publicKey = Config::get('lazerpay.key');
+        $secretKey = Config::get('lazerpay.secret');
+
+        return Http::retry(3, 100)->withToken($secretKey)->withHeaders([
+            'x-api-key' => $publicKey
         ]);
     }
 }

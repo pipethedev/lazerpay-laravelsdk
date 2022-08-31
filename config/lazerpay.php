@@ -14,12 +14,12 @@ return [
      *
      */
 
-    'lazer_public_key' => env('LAZER_PUBLIC_KEY'),
+    'key' => env('LAZER_PUBLIC_KEY', null),
 
     /**
      * Secret Key From Lazerpay developer Dashboard
      *
      */
 
-    'lazer_secret_key' => env('LAZER_SECRET_KEY')
+    'secret' => env('LAZER_SECRET_KEY', null)
 ];

@@ -13,5 +13,4 @@ class LazerpayFacade extends Facade
     {
         return 'lazerpay';
     }
-
 }
