@@ -3,35 +3,28 @@
 namespace Pipedev\Lazerpay;
 
 use Illuminate\Http\Client\RequestException;
-use Illuminate\Http\JsonResponse;
 use Pipedev\Lazerpay\helpers\Helper;
-use PipeDev\Lazerpay\helpers\LazerpayAPI;
 
 class Lazerpay extends Helper
 {
-
     /**
      * @throws RequestException
      */
     public function initializePayment(array $data): mixed
     {
-
         $result = (new helpers\LazerpayAPI)->url()->post($this->urlWrapper(Action::INIT_TRANSACTION), array_merge($data, [
             'reference' => $this->generateReference(12)
         ]))->throw();
-
 
         return json_decode($result);
     }
 
     public function confirmPayment(string $identifier): mixed
     {
-
         $result = (new helpers\LazerpayAPI)->url()->get($this->urlWrapper(Action::CONFIRM_TRANSACTION,$identifier))->throw();
 
         return json_decode($result);
     }
-
 
     /**
      * @throws RequestException
