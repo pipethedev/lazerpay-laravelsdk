@@ -41,7 +41,7 @@
     },
     "require": {
         "php": "^7.3|^8.0",
-        "facade/ignition": "2.17.3",
+        "facade/ignition": "2.17.6",
         "laravel/sanctum": "3.*",
         "laravel/sail": "1.13.3",
         "laravel/tinker": "2.*",
