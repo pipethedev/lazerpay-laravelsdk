@@ -45,7 +45,7 @@
         "laravel/sanctum": "3.*",
         "laravel/sail": "1.13.3",
         "laravel/tinker": "2.*",
-        "guzzlehttp/guzzle": "7.4.0",
+        "guzzlehttp/guzzle": "7.5.0",
         "fruitcake/laravel-cors": "2.0.4",
         "orchestra/testbench": "7.*"
     },
