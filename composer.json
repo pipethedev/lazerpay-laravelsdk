@@ -43,7 +43,7 @@
         "php": "^7.3|^8.0",
         
         "laravel/sanctum": "3.*",
-        "laravel/sail": "1.13.3",
+        "laravel/sail": "1.16.2",
         "laravel/tinker": "2.*",
         "guzzlehttp/guzzle": "7.5.0",
         "fruitcake/laravel-cors": "3.0.0",
