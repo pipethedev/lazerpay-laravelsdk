@@ -41,7 +41,7 @@
     },
     "require": {
         "php": "^7.3|^8.0",
-        "facade/ignition": "2.17.6",
+        
         "laravel/sanctum": "3.*",
         "laravel/sail": "1.13.3",
         "laravel/tinker": "2.*",
@@ -52,7 +52,8 @@
     "require-dev": {
         "phpunit/phpunit": "9.5.x-dev",
         "pestphp/pest": "^1.22",
-        "pestphp/pest-plugin-laravel": "^1.2"
+        "pestphp/pest-plugin-laravel": "^1.2",
+        "spatie/laravel-ignition": "^1.0"
     },
     "scripts" : {
         "test" : "./vendor/bin/pest"
