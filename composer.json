@@ -41,18 +41,19 @@
     },
     "require": {
         "php": "^7.3|^8.0",
-        "facade/ignition": "2.17.3",
-        "laravel/sanctum": "2.14.0",
-        "laravel/sail": "1.13.3",
-        "laravel/tinker": "2.6.3",
-        "guzzlehttp/guzzle": "7.4.0",
-        "fruitcake/laravel-cors": "2.0.4",
-        "orchestra/testbench": "^6.0"
+        
+        "laravel/sanctum": "3.*",
+        "laravel/sail": "1.16.2",
+        "laravel/tinker": "2.*",
+        "guzzlehttp/guzzle": "7.5.0",
+        "fruitcake/laravel-cors": "3.0.0",
+        "orchestra/testbench": "7.*"
     },
     "require-dev": {
         "phpunit/phpunit": "9.5.x-dev",
         "pestphp/pest": "^1.22",
-        "pestphp/pest-plugin-laravel": "^1.2"
+        "pestphp/pest-plugin-laravel": "^1.2",
+        "spatie/laravel-ignition": "^1.0"
     },
     "scripts" : {
         "test" : "./vendor/bin/pest"
